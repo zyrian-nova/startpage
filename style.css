@@ -1,0 +1,84 @@
+/* Customize the colors and fonts for the dashboard */
+:root {
+    --bg-color: #282c34;
+    --text-color: #ffffff;
+}
+
+@font-face {
+    font-family: 'Iosevka Aile';
+    src: url('fonts/IosevkaAile-Regular.ttf') format('truetype');
+    font-display: swap;
+}
+
+/* Style */
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Iosevka Aile', monospace;
+}
+
+.dashboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.left-column {
+display: flex;
+flex-direction: column;
+}
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+}
+
+.time {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+/* Time separator blinking effect */
+.separator {
+    animation: blinker 1s step-start infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+.date {
+    font-size: 1rem;
+    margin-top: 4px;
+}
+
+.weather-top {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 2rem;
+}
+
+ /* Weather icon monochrome filter */
+#weather-icon {
+    width: 2rem;
+    height: 2rem;
+    filter: brightness(0) invert(1);
+}
+
+.weather-desc {
+    font-size: 1rem;
+    margin-top: 4px;
+}
