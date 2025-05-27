@@ -4,9 +4,9 @@
 
 A simple startpage that shows the current date, time, and weather.
 
+:camera: [Live Preview](https://mult1v4c.github.io/startpage/)
 
-
-## Setup
+## :bulb: Setup
 
 1. **Copy the config file:**
    Rename the included `sample.js` to `config.js`.
