@@ -27,7 +27,7 @@ body {
     justify-content: space-between;
     align-items: flex-end;
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     padding: 20px;
 }
 
@@ -46,6 +46,7 @@ flex-direction: column;
 .time {
     font-size: 3rem;
     font-weight: bold;
+    letter-spacing: -0.05em;
 }
 
 /* Time separator blinking effect */
@@ -68,13 +69,14 @@ flex-direction: column;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 2rem;
+    font-size: 3rem;
+    font-weight: bold;
 }
 
  /* Weather icon monochrome filter */
 #weather-icon {
-    width: 2rem;
-    height: 2rem;
+    width: 3rem;
+    height: 3rem;
     filter: brightness(0) invert(1);
 }
 

@@ -11,7 +11,7 @@ function displayDate() {
 }
 
 
-// Set time 
+// Set time
 var oldTime;
 
 function setTime() {
@@ -19,15 +19,17 @@ function setTime() {
     const time = now.toLocaleTimeString('en-US', {
         hour12: false,
         hour: 'numeric',
-        minute: 'numeric'
+        minute: 'numeric',
+        second: 'numeric'
     });
 
     if (oldTime === time) return;
 
     oldTime = time;
-    const [hours, minutes] = time.split(':');
+    const [hours, minutes, seconds] = time.split(':');
     document.querySelector('#hours').innerText = hours.padStart(2, '0');
     document.querySelector('#minutes').innerText = minutes.padStart(2, '0');
+    document.querySelector('#seconds').innerText = seconds.padStart(2, '0');
 }
 
 // Get weather
