@@ -99,6 +99,37 @@ body {
     margin-top: 4px;
 }
 
+.info-section {
+    margin-top: 1.5rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.03); /* Soft background */
+    border-radius: 0.5rem;
+    max-width: 500px;
+    font-size: 1rem;
+}
+
+.info-section h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    opacity: 0.85;
+}
+
+.info-section a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.info-section a:hover {
+    color: #1FA5DF; /* Blue-Cyan */
+}
+
+.info-section span {
+    font-weight: 400;
+}
+
 /* Media Queries for Responsiveness */
 @media (max-width: 480px) {
     .dashboard {

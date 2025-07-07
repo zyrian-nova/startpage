@@ -67,96 +67,27 @@ function capitalize(text) {
 
 // Get International News
 
-async function fetchInternationalNews() {
-    try {
-        const response = await fetch(`https://newsapi.org/v2/top-headlines?language=en&pageSize=1&apiKey=${NEWS_API_KEY}`);
+async function fetchRedditNews() {
+    const response = await fetch('https://www.reddit.com/r/worldnews/top/.json?limit=1');
+    const data = await response.json();
+    const post = data.data.children[0].data;
 
-        // Response OK
-        if (!response.ok) {
-            console.error("HTTP error:", response.status, response.statusText);
-            document.getElementById('news-intl-title').textContent = "API Error.";
-            return;
-        }
-
-        let data;
-        try {
-            data = await response.json();
-        } catch (jsonError) {
-            console.error("JSON parse error:", jsonError);
-            document.getElementById('news-intl-title').textContent = "Invalid response.";
-            return;
-        }
-
-        console.log("DATA TYPE:", typeof data, "DATA CONTENT:", data);
-
-        if (!data || data.status !== "ok" || !Array.isArray(data.articles) || data.articles.length === 0) {
-            console.warn("No articles available or API error:", data);
-            document.getElementById('news-intl-title').textContent = "No available news.";
-            return;
-        }
-
-        const article = data.articles[0];
-
-        if (!article || !article.title || !article.url) {
-            console.warn("Article incomplete:", article);
-            document.getElementById('news-intl-title').textContent = "Incomplete news.";
-            return;
-        }
-
-        document.getElementById('news-intl-title').textContent = article.title;
-        document.getElementById('news-intl-link').href = article.url;
-
-    } catch (error) {
-        console.error("Error fetching international news:", error);
-        document.getElementById('news-intl-title').textContent = "Conection error.";
-    }
+    document.getElementById('news-intl-title').textContent = post.title;
+    document.getElementById('news-intl-link').href = 'https://reddit.com' + post.permalink;
 }
 
 // Get Tech News
 
-async function fetchTechNews() {
-    try {
-        const response = await fetch(`https://newsapi.org/v2/top-headlines?category=technology&language=en&pageSize=1&apiKey=${NEWS_API_KEY}`);
+async function fetchHackerNews() {
+    const idsResponse = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json');
+    const ids = await idsResponse.json();
+    const firstId = ids[0];
 
-        // Response OK
-        if (!response.ok) {
-            console.error("HTTP error:", response.status, response.statusText);
-            document.getElementById('news-intl-title').textContent = "API Error.";
-            return;
-        }
+    const storyResponse = await fetch(`https://hacker-news.firebaseio.com/v0/item/${firstId}.json`);
+    const story = await storyResponse.json();
 
-        let data;
-        try {
-            data = await response.json();
-        } catch (jsonError) {
-            console.error("JSON parse error:", jsonError);
-            document.getElementById('news-intl-title').textContent = "Invalid response.";
-            return;
-        }
-
-        console.log("DATA TYPE:", typeof data, "DATA CONTENT:", data);
-
-        if (!data || data.status !== "ok" || !Array.isArray(data.articles) || data.articles.length === 0) {
-            console.warn("No articles available or API error:", data);
-            document.getElementById('news-intl-title').textContent = "NNo available news.";
-            return;
-        }
-
-        const article = data.articles[0];
-
-        if (!article || !article.title || !article.url) {
-            console.warn("Article incomplete:", article);
-            document.getElementById('news-intl-title').textContent = "Incomplete news.";
-            return;
-        }
-
-        document.getElementById('news-intl-title').textContent = article.title;
-        document.getElementById('news-intl-link').href = article.url;
-
-    } catch (error) {
-        console.error("Error fetching international news:", error);
-        document.getElementById('news-intl-title').textContent = "Conection error.";
-    }
+    document.getElementById('news-tech-title').textContent = story.title;
+    document.getElementById('news-tech-link').href = story.url;
 }
 
 // Load page
@@ -165,8 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
     displayDate();
     setTime();
     fetchWeather();
-    fetchInternationalNews();
-    fetchTechNews();
+    fetchRedditNews();
+    fetchHackerNews();
 
     setInterval(setTime, 1000);
     setInterval(fetchWeather, 900000)
