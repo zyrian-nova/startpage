@@ -65,12 +65,108 @@ function capitalize(text) {
     return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
+// Get International News
+
+async function fetchInternationalNews() {
+    try {
+        const response = await fetch(`https://newsapi.org/v2/top-headlines?language=en&pageSize=1&apiKey=${NEWS_API_KEY}`);
+
+        // Response OK
+        if (!response.ok) {
+            console.error("HTTP error:", response.status, response.statusText);
+            document.getElementById('news-intl-title').textContent = "API Error.";
+            return;
+        }
+
+        let data;
+        try {
+            data = await response.json();
+        } catch (jsonError) {
+            console.error("JSON parse error:", jsonError);
+            document.getElementById('news-intl-title').textContent = "Invalid response.";
+            return;
+        }
+
+        console.log("DATA TYPE:", typeof data, "DATA CONTENT:", data);
+
+        if (!data || data.status !== "ok" || !Array.isArray(data.articles) || data.articles.length === 0) {
+            console.warn("No articles available or API error:", data);
+            document.getElementById('news-intl-title').textContent = "No available news.";
+            return;
+        }
+
+        const article = data.articles[0];
+
+        if (!article || !article.title || !article.url) {
+            console.warn("Article incomplete:", article);
+            document.getElementById('news-intl-title').textContent = "Incomplete news.";
+            return;
+        }
+
+        document.getElementById('news-intl-title').textContent = article.title;
+        document.getElementById('news-intl-link').href = article.url;
+
+    } catch (error) {
+        console.error("Error fetching international news:", error);
+        document.getElementById('news-intl-title').textContent = "Conection error.";
+    }
+}
+
+// Get Tech News
+
+async function fetchTechNews() {
+    try {
+        const response = await fetch(`https://newsapi.org/v2/top-headlines?category=technology&language=en&pageSize=1&apiKey=${NEWS_API_KEY}`);
+
+        // Response OK
+        if (!response.ok) {
+            console.error("HTTP error:", response.status, response.statusText);
+            document.getElementById('news-intl-title').textContent = "API Error.";
+            return;
+        }
+
+        let data;
+        try {
+            data = await response.json();
+        } catch (jsonError) {
+            console.error("JSON parse error:", jsonError);
+            document.getElementById('news-intl-title').textContent = "Invalid response.";
+            return;
+        }
+
+        console.log("DATA TYPE:", typeof data, "DATA CONTENT:", data);
+
+        if (!data || data.status !== "ok" || !Array.isArray(data.articles) || data.articles.length === 0) {
+            console.warn("No articles available or API error:", data);
+            document.getElementById('news-intl-title').textContent = "NNo available news.";
+            return;
+        }
+
+        const article = data.articles[0];
+
+        if (!article || !article.title || !article.url) {
+            console.warn("Article incomplete:", article);
+            document.getElementById('news-intl-title').textContent = "Incomplete news.";
+            return;
+        }
+
+        document.getElementById('news-intl-title').textContent = article.title;
+        document.getElementById('news-intl-link').href = article.url;
+
+    } catch (error) {
+        console.error("Error fetching international news:", error);
+        document.getElementById('news-intl-title').textContent = "Conection error.";
+    }
+}
+
 // Load page
 
 document.addEventListener('DOMContentLoaded', function() {
     displayDate();
     setTime();
     fetchWeather();
+    fetchInternationalNews();
+    fetchTechNews();
 
     setInterval(setTime, 1000);
     setInterval(fetchWeather, 900000)

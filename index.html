@@ -6,9 +6,11 @@
     <title>[:Zyrian:]</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
     <link rel="stylesheet" href="style.css">
+    <link rel="preload" href="fonts/IosevkaAile-Regular.ttf" as="font" type="font/ttf" crossorigin>
 </head>
 
 <body>
+    <div class="container">
     <div class="dashboard">
         <div class="left-column">
             <div class="time">
@@ -24,6 +26,18 @@
             </div>
             <div id="weather-desc" class="weather-desc"></div>
         </div>
+    </div>
+
+    <div class="info-section">
+        <h3>News [International]:</h3>
+        <a id="news-intl-link" target="_blank"><span id="news-intl-title">Loading...</span></a>
+    </div>
+
+    <div class="info-section">
+        <h3>News [Tech]:</h3>
+        <a id="news-tech-link" target="_blank"><span id="news-tech-title">Loading...</span></a>
+    </div>
+
     </div>
 
     <script src="config.js"></script> <!-- Configs loaded first -->
