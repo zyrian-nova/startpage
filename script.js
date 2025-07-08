@@ -65,12 +65,39 @@ function capitalize(text) {
     return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
+// Get International News
+
+async function fetchRedditNews() {
+    const response = await fetch('https://www.reddit.com/r/worldnews/top/.json?limit=1');
+    const data = await response.json();
+    const post = data.data.children[0].data;
+
+    document.getElementById('news-intl-title').textContent = post.title;
+    document.getElementById('news-intl-link').href = 'https://reddit.com' + post.permalink;
+}
+
+// Get Tech News
+
+async function fetchHackerNews() {
+    const idsResponse = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json');
+    const ids = await idsResponse.json();
+    const firstId = ids[0];
+
+    const storyResponse = await fetch(`https://hacker-news.firebaseio.com/v0/item/${firstId}.json`);
+    const story = await storyResponse.json();
+
+    document.getElementById('news-tech-title').textContent = story.title;
+    document.getElementById('news-tech-link').href = story.url;
+}
+
 // Load page
 
 document.addEventListener('DOMContentLoaded', function() {
     displayDate();
     setTime();
     fetchWeather();
+    fetchRedditNews();
+    fetchHackerNews();
 
     setInterval(setTime, 1000);
     setInterval(fetchWeather, 900000)
