@@ -1,6 +1,6 @@
 /* Customize the colors and fonts for the dashboard */
 :root {
-    --bg-color: #282c34;
+    --bg-color: #18181a;
     --text-color: #ffffff;
     --font-size-large: clamp(2rem, 6vw, 3rem);
     --font-size-small: clamp(0.8rem, 3vw, 1rem);
@@ -128,6 +128,49 @@ body {
 
 .info-section span {
     font-weight: 400;
+}
+
+#kagi-search {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    max-width: 500px;
+}
+
+#kagi-search input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-color);
+}
+
+#kagi-search input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+#kagi-search input:focus {
+    outline: none;
+    border: 2px solid #1FA5DF;
+    box-shadow: 0 0 0 2px rgba(31, 165, 223, 0.2);
+}
+
+#kagi-search button {
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#kagi-search button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Media Queries for Responsiveness */
