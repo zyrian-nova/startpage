@@ -93,6 +93,9 @@ async function fetchHackerNews() {
 // Load page
 
 document.addEventListener('DOMContentLoaded', function() {
+    if (typeof PAGE_TITLE !== "undefined") {
+        document.title = PAGE_TITLE;
+    }
     displayDate();
     setTime();
     fetchWeather();
