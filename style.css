@@ -130,7 +130,7 @@ body {
     font-weight: 400;
 }
 
-#kagi-search {
+#ddg-search {
     display: flex;
     gap: 0.5rem;
     margin-top: 1.5rem;
@@ -138,7 +138,7 @@ body {
     max-width: 500px;
 }
 
-#kagi-search input {
+#ddg-search input {
     flex: 1;
     padding: 0.5rem 0.75rem;
     border: none;
@@ -148,17 +148,17 @@ body {
     color: var(--text-color);
 }
 
-#kagi-search input::placeholder {
+#ddg-search input::placeholder {
     color: rgba(255, 255, 255, 0.4);
 }
 
-#kagi-search input:focus {
+#ddg-search input:focus {
     outline: none;
     border: 2px solid #1FA5DF;
     box-shadow: 0 0 0 2px rgba(31, 165, 223, 0.2);
 }
 
-#kagi-search button {
+#ddg-search button {
     padding: 0.5rem 0.75rem;
     font-size: 1rem;
     background-color: rgba(255, 255, 255, 0.1);
@@ -169,7 +169,7 @@ body {
     transition: background-color 0.2s ease;
 }
 
-#kagi-search button:hover {
+#ddg-search button:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
